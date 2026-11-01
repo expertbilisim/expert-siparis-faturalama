@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expert Sipariş Faturalama — Belge Onay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark">E</span>
+      <div>
+        <strong>Expert Sipariş Faturalama</strong>
+        <span>Belge tara → onayla → Vega’ya aktar</span>
+      </div>
+    </div>
+    <div class="meta" id="okuyucuMeta">Okuyucu: …</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel upload-panel">
+      <h1>Defter / fiş belgesi</h1>
+      <p class="lead">El yazısı sipariş listesini yükleyin. Sistem satırları çıkarır; siz onayladıktan sonra Vega belgesi üretilir.</p>
+
+      <label class="drop" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*,.pdf" hidden />
+        <span class="drop-title">Belgeyi sürükleyin veya seçin</span>
+        <span class="drop-sub">JPG, PNG — defter fotoğrafı yeterli</span>
+      </label>
+
+      <div class="actions">
+        <button type="button" class="btn primary" id="btnOku" disabled>Satırları oku</button>
+        <button type="button" class="btn ghost" id="btnDemo">Örnek defteri yükle</button>
+      </div>
+
+      <div class="preview-wrap" id="previewWrap" hidden>
+        <img id="preview" alt="Yüklenen belge önizleme" />
+      </div>
+      <p class="hint" id="status">Hazır.</p>
+    </section>
+
+    <section class="panel review-panel" id="reviewPanel" hidden>
+      <div class="review-head">
+        <div>
+          <h2>Onay ekranı</h2>
+          <p class="lead" id="okumaNotu"></p>
+        </div>
+        <div class="totals">
+          <div><span>Satır</span><strong id="satirSayisi">0</strong></div>
+          <div><span>Toplam</span><strong id="genelToplam">0</strong></div>
+          <div><span>Durum</span><strong id="belgeDurum">—</strong></div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <label>Cari unvan<input id="cariUnvan" placeholder="Opsiyonel — müşteri / cari" /></label>
+        <label>Cari kodu<input id="cariKodu" placeholder="Vega cari kodu" /></label>
+        <label>Belge no<input id="belgeNo" placeholder="Sipariş / fatura no" /></label>
+        <label>Belge türü
+          <select id="belgeTuru">
+            <option value="SIPARIS">Sipariş</option>
+            <option value="FATURA">Fatura</option>
+            <option value="IRSALIYE">İrsaliye</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table id="satirTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Stok kodu</th>
+              <th>Açıklama</th>
+              <th>Miktar</th>
+              <th>B.Fiyat</th>
+              <th>Tutar</th>
+              <th>Not</th>
+              <th>Güven</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="actions end">
+        <button type="button" class="btn ghost" id="btnKaydet">Düzeltmeleri kaydet</button>
+        <button type="button" class="btn primary" id="btnOnayla">Onayla</button>
+        <button type="button" class="btn accent" id="btnVega" disabled>Vega XML indir</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
